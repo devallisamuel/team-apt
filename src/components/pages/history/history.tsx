@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -15,6 +16,8 @@ import {
 
 import { Bar, Line } from "react-chartjs-2";
 
+import Modal from "react-modal";
+import { ModalComponent } from "components/base/modal/modal";
 import { NavIcon } from "components/base/navIcons/navIcon";
 import {
   secondData,
@@ -42,7 +45,36 @@ ChartJS.register(
   Legend
 );
 
+Modal.setAppElement("#root");
+
 export const History = () => {
+  let subtitle: any = { style: { color: "" } };
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = "#f00";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+    },
+  };
+
   const progress = (val: number) => {
     return (
       <div className=" mt-2 w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
@@ -94,7 +126,12 @@ export const History = () => {
               <p className=" font-sans font-medium  text-sm">BMI</p>
               <div className="flex">
                 <p className=" font-sans font-medium  text-sm">17.3</p>
-                <img src={caret} className = "w-[15px] h-[20px]" style={{verticalAlign:"bottom"}} alt="arrow" />
+                <img
+                  src={caret}
+                  className="w-[15px] h-[20px]"
+                  style={{ verticalAlign: "bottom" }}
+                  alt="arrow"
+                />
               </div>
             </div>
 
@@ -115,7 +152,7 @@ export const History = () => {
                 { name: "Normal", color: purple },
                 { name: "High", color: blue },
               ].map((val, index) => (
-                <div key={index} style = {{display:"flex", gap:"3px"}}>
+                <div key={index} style={{ display: "flex", gap: "3px" }}>
                   {/* <div
                     className={`w-[10px] h-[10px] rounded-full bg-${val.color}-400`}
                   ></div> */}
@@ -150,8 +187,20 @@ export const History = () => {
           <img
             src={plus}
             alt="pop up modal"
-            className="relative left-[40%] bottom-[10px]"
+            className="relative left-[40%] bottom-[10px] cursor-pointer"
+            onClick={() => setIsOpen(!modalIsOpen)}
           />
+
+          <Modal
+            isOpen={modalIsOpen}
+            // onAfterOpen={afterOpenModal}
+            onRequestClose={closeModal}
+            style={customStyles}
+            // className = "w-[50%]"
+            contentLabel="Example Modal"
+          >
+            <ModalComponent />
+          </Modal>
 
           <NavIcon />
         </div>

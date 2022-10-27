@@ -56,7 +56,7 @@ export const AddWeight = () => {
             
             <div className="flex justify-between mt-3">
                 {
-                    masses.map((mass,index) => <MassCard {...mass}/>)
+                    masses.map((mass,index) => <MassCard {...mass} key = {index}/>)
                 }
             </div>
 

@@ -44,7 +44,7 @@ ChartJS.register(
 Modal.setAppElement("#root");
 
 export const Activity = function (): JSX.Element {
-  let subtitle: any = { style: "" };
+  let subtitle: any = { style: {color:""} };
   const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {
@@ -161,12 +161,12 @@ export const Activity = function (): JSX.Element {
           <img
             src={plus}
             alt="pop up modal"
-            className="relative left-[40%] bottom-[20px]"
+            className="relative left-[40%] bottom-[20px] cursor-pointer"
             onClick={() => setIsOpen(!modalIsOpen)}
           />
           <Modal
             isOpen={modalIsOpen}
-            onAfterOpen={afterOpenModal}
+            // onAfterOpen={afterOpenModal}
             onRequestClose={closeModal}
             style={customStyles}
             // className = "w-[50%]"

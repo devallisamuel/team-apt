@@ -14,5 +14,6 @@ export interface details  {
 
 export type modalDet = {
   logo:any;
+  name:string;
   text:string;
 }
