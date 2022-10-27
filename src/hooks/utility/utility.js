@@ -1,6 +1,3 @@
-import { faker } from "@faker-js/faker";
-
-
 export const options = {
   responsive: true,
   scales: {
@@ -27,10 +24,6 @@ export const options = {
     legend: {
       display: false,
     },
-    // title: {
-    //   display: true,
-    //   text: "File Archival",
-    // },
   },
   options: {
     scales: {
@@ -49,7 +42,6 @@ export const data = {
     {
       label: "Data 1",
       data: [90, 10, 70, 50, 30, 60, 40],
-      //   data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
       backgroundColor: [
         "rgb(168 85 247)",
         "rgba(53, 162, 235, 0.5)",
@@ -63,14 +55,95 @@ export const data = {
       borderSkipped: false,
       borderRadius: 20,
     },
-    // {
-    //   label: "Data 2",
-    //   //   data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-    //   data: [90, 0, 10, 0, 80, 0, 30],
-    //   backgroundColor: "rgba(53, 162, 235, 0.5)",
-    //   color: "white",
-    //   borderSkipped: false,
-    //   borderRadius: 20,
-    // },
   ],
+};
+export const secondOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  scales: {
+    x: {
+      grid: {
+        display: false,
+        color: "rgba(0, 0, 0, 0)",
+      },
+      ticks: {
+        color: "#656565",
+      },
+    },
+    y: {
+      grid: {
+        display: false,
+        color: "rgba(0, 0, 0, 0)",
+      },
+      ticks: {
+        color: "white",
+      },
+    },
+  },
+  plugins: {
+    legend: {
+      display: false,
+    },
+  },
+  options: {
+    scales: {
+      x: {
+        stacked: true,
+      },
+    },
+  },
+};
+
+
+export const secondData = {
+  labels,
+  datasets: [
+    {
+      label: "Data 1",
+      data: [90, 10, 70, 50, 30, 60, 40],
+      backgroundColor: [
+        "#2888E1",
+        "#A1C6DB",
+        "#2888E1",
+        "#A1C6DB",
+        "#2888E1",
+        "#A1C6DB",
+        "#2888E1",
+      ],
+      color: "#fff",
+      borderSkipped: false,
+      borderRadius: 20,
+    },
+  ],
+};
+
+
+// line chart 
+export const thirdData = {
+  label: ["M", "T", "W", "T", "F", "S", "S"],
+  datasets: [
+    {
+      // label: "Rainfall",
+      // fill: false,
+      // lineTension: 0.5,
+      backgroundColor: "rgba(75,192,192,1)",
+      borderColor: "rgba(0,0,0,1)",
+      borderWidth: 2,
+      data: [65, 59, 80, 81, 56,44,30],
+    },
+  ],
+};
+
+export const config = {
+  responsive: true,
+  data,
+  plugins: {
+    // legend: {
+    //   position: 'top',
+    // },
+    title: {
+      display: true,
+      text: 'Chart.js Line Chart',
+    },
+  },
 };

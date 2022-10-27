@@ -64,6 +64,7 @@ export const AddWeight = () => {
               <button
                 type="submit"
                 className="bg-blue-500 px-3 py-3 rounded-md w-[10rem] text-sm text-white font-medium"
+                onClick={() => navigate("/")}
               >
                 Save
               </button>
