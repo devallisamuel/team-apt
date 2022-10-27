@@ -73,7 +73,7 @@ export const Activity = function (): JSX.Element {
 
   return (
     <>
-      <div style={{ paddingTop: "10px" }}>
+      <div style={{ paddingTop: "10px", marginTop:"20px" }}>
         <div className="bg-white w-[30rem] h-240 rounded-2xl mx-auto p-5 ">
           <div className="flex justify-between">
             <p className=" font-sans font-medium  text-2xl">My Activity</p>
@@ -102,7 +102,7 @@ export const Activity = function (): JSX.Element {
             options={options}
             style={{
               backgroundColor: "#6F38CA",
-              borderRadius: "1rem",
+              borderRadius: ".5rem",
               marginTop: "10px",
             }}
           />
