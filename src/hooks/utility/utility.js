@@ -120,7 +120,7 @@ export const secondData = {
 
 // line chart 
 export const thirdData = {
-  label: ["M", "T", "W", "T", "F", "S", "S"],
+  labels: ["M", "T", "W", "T", "F", "S", "S"],
   datasets: [
     {
       // label: "Rainfall",
@@ -136,14 +136,17 @@ export const thirdData = {
 
 export const config = {
   responsive: true,
-  data,
   plugins: {
     // legend: {
-    //   position: 'top',
+    //   position: "top",
     // },
+    legend: {
+      display: false,
+    },
+      
     title: {
-      display: true,
-      text: 'Chart.js Line Chart',
+      display: false,
+      text: "Chart.js Line Chart",
     },
   },
 };

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -13,9 +14,11 @@ import { Chart } from "react-chartjs-2";
 
 import { Bar } from "react-chartjs-2";
 import Carousel from "react-multi-carousel";
+import Modal from "react-modal";
 import "react-multi-carousel/lib/styles.css";
 
 import { NavIcon } from "../../base/navIcons/navIcon";
+import { ModalComponent } from "components/base/modal/modal";
 import { ActivityCard } from "../../base/activityCard/activityCard";
 import { card } from "../../../hooks/types";
 import { options, data } from "../../../hooks/utility/utility";
@@ -38,7 +41,36 @@ ChartJS.register(
   Legend
 );
 
+Modal.setAppElement("#root");
+
 export const Activity = function (): JSX.Element {
+  let subtitle: any = { style: "" };
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = "#f00";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+    },
+  };
+
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -73,7 +105,7 @@ export const Activity = function (): JSX.Element {
 
   return (
     <>
-      <div style={{ paddingTop: "10px", marginTop:"20px" }}>
+      <div style={{ paddingTop: "10px", marginTop: "20px" }}>
         <div className="bg-white w-[30rem] h-240 rounded-2xl mx-auto p-5 ">
           <div className="flex justify-between">
             <p className=" font-sans font-medium  text-2xl">My Activity</p>
@@ -81,15 +113,15 @@ export const Activity = function (): JSX.Element {
           </div>
 
           {/* <div className="flex justify-center"> */}
-            <Carousel
-              responsive={responsive}
-              itemClass="carousel-item-margin-auto-mx"
-              autoPlay={true}
-            >
-              {cardElements.map((value: card, index: number) => (
-                <ActivityCard {...value} key={index} />
-              ))}
-            </Carousel>
+          <Carousel
+            responsive={responsive}
+            itemClass="carousel-item-margin-auto-mx"
+            autoPlay={true}
+          >
+            {cardElements.map((value: card, index: number) => (
+              <ActivityCard {...value} key={index} />
+            ))}
+          </Carousel>
           {/* </div> */}
 
           <div className="flex justify-between items-center">
@@ -130,7 +162,18 @@ export const Activity = function (): JSX.Element {
             src={plus}
             alt="pop up modal"
             className="relative left-[40%] bottom-[20px]"
+            onClick={() => setIsOpen(!modalIsOpen)}
           />
+          <Modal
+            isOpen={modalIsOpen}
+            onAfterOpen={afterOpenModal}
+            onRequestClose={closeModal}
+            style={customStyles}
+            // className = "w-[50%]"
+            contentLabel="Example Modal"
+          >
+            <ModalComponent/>
+          </Modal>
           <NavIcon />
         </div>
       </div>

@@ -6,8 +6,13 @@ export type card = {
   progress: string;
 };
 
-export type details = {
+export interface details  {
   logo: any;
   number: number;
   text: string;
 };
+
+export type modalDet = {
+  logo:any;
+  text:string;
+}
